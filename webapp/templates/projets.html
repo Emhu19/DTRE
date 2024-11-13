@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTRE</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?{% now 'U' %}">
+</head>
+<body>
+<!--    <div class="start_page">
+        <div class="hide"><div class="hidden"></div></div>
+        <div class="start_title">KPS</div>
+        <div class="start_text">L'association Kernel Panic Systems</div>
+        <div class="hide1"><div class="hidden1"></div></div>
+    </div>-->
+
+<!-- ***************************SECTION HEADER********************************************-->
+<!-- Header -->
+{% include 'includes/header.html' %}
+<main>
+
+    <!-- ***************************SECTION BOUTON PROJET ********************************************-->
+    <div class="body_tabs">
+        <div class="tabs">
+            <!-- Projet Actuel -->
+            <input
+                    type="radio"
+                    id="projet-actuel"
+                    name="projet"
+                    value="Projet Actuel"
+                    class="input"
+                    checked
+            />
+            <label for="projet-actuel" class="label">Projet Actuel</label>
+
+            <!-- Projet Futur -->
+            <input
+                    type="radio"
+                    id="projet-futur"
+                    name="projet"
+                    value="Projet Futur"
+                    class="input"
+            />
+            <label for="projet-futur" class="label">Idée de Projet</label>
+
+            <!-- Ancien Projet -->
+            <input
+                    type="radio"
+                    id="ancien-projet"
+                    name="projet"
+                    value="Ancien Projet"
+                    class="input"
+            />
+            <label for="ancien-projet" class="label">Ancien Projet</label>
+        </div>
+    </div>
+
+
+    <!-- ***************************SECTION PROJET ********************************************-->
+
+    <div class="Projets">
+
+        <!-- ***************************SECTION PROJET ACTUEL********************************************-->
+        <div class="Projets-grid">
+            <div id="projet-actuel-content" class="projet-content" style="display: none;">
+
+                {% for projet in projets %}
+                    {% if  projet.status == "en_cours" %}
+
+
+                        <div class="Projets-card">
+                            {% if projet.image_projet %}
+                                <img src="{{ projet.image_projet.url }}" alt="{{ projet.nom }}" class="Projets-image">
+                            {% endif %}
+                            <div class="Projets-info">
+                                <h3>{{ projet.nom_projet }}</h3>
+                                <p>{{ projet.description }}</p>
+                                {% if projet.techno.all %}
+                                    <p>Outils utilisés:
+
+                                        {% for tech in projet.techno.all %}
+                                            {{ tech.nom }}{% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+
+                                    </p>
+                                {% endif %}
+                                <p>Développeurs du projet :
+                                    <strong>
+                                        {% for dev in projet.developpeur.all %}
+                                            {{ dev.prenom }} {{ dev.nom }}{% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </strong>
+                                </p>
+                            </div>
+                            {% if projet.lien_gitlab %}
+                                <a href="{{ projet.lien_gitlab }}" class="event-button">Liens gitlab</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <!-- ***************************SECTION IDEE DE FUTUR PROJET *******************************************-->
+        <div id="projet-futur-content" class="projet-content" style="display: none;">
+
+            {% for projet in projets %}
+                {% if  projet.status == "a_venir" %}
+
+
+                    <div class="Projets-card">
+                        {% if projet.image_projet %}
+                            <img src="{{ projet.image_projet.url }}" alt="{{ projet.nom }}" class="Projets-image">
+                        {% endif %}
+                        <div class="Projets-info">
+                            <h3>{{ projet.nom_projet }}</h3>
+                            <p>{{ projet.description }}</p>
+                            {% if projet.techno.all %}
+                                <p>Outils utilisés:
+
+                                    {% for tech in projet.techno.all %}
+                                        {{ tech.nom }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+
+                                </p>
+                            {% endif %}
+                            <p>Développeurs du projet :
+                                <strong>
+                                    {% for dev in projet.developpeur.all %}
+                                        {{ dev.prenom }} {{ dev.nom }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </strong>
+                            </p>
+                        </div>
+                        {% if projet.lien_gitlab %}
+                            <a href="{{ projet.lien_gitlab }}" class="event-button">Liens gitlab</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <!-- ***************************SECTION D'ANCIEN PROJET ********************************************-->
+        <div id="ancien-projet-content" class="projet-content" style="display: none;">
+            {% for projet in projets %}
+                {% if  projet.status == "termine" %}
+
+
+                    <div class="Projets-card">
+                        {% if projet.image_projet %}
+                            <img src="{{ projet.image_projet.url }}" alt="{{ projet.nom }}" class="Projets-image">
+                        {% endif %}
+                        <div class="Projets-info">
+                            <h3>{{ projet.nom_projet }}</h3>
+                            <p>{{ projet.description }}</p>
+                            {% if projet.techno.all %}
+                                <p>Outils utilisés:
+
+                                    {% for tech in projet.techno.all %}
+                                        {{ tech.nom }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+
+                                </p>
+                            {% endif %}
+                            <p>Développeurs du projet :
+                                <strong>
+                                    {% for dev in projet.developpeur.all %}
+                                        {{ dev.prenom }} {{ dev.nom }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </strong>
+                            </p>
+                        </div>
+                        {% if projet.lien_gitlab %}
+                            <a href="{{ projet.lien_gitlab }}" class="event-button">Liens gitlab</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+</main>
+
+
+<!-- ***************************SECTION FOOTER********************************************-->
+
+<!-- Footer -->
+{% include 'includes/footer.html' %}
+ <script src="{% static 'js/script.js' %}?{% now 'U' %}"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTRE</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?{% now 'U' %}">
+</head>
+<body>
+  <!--    <div class="start_page">
+        <div class="hide"><div class="hidden"></div></div>
+        <div class="start_title">KPS</div>
+        <div class="start_text">L'association Kernel Panic Systems</div>
+        <div class="hide1"><div class="hidden1"></div></div>
+    </div> -->
+
+    {% include 'includes/header.html' %}
+
+  <main>
+
+    <h1 class="contact-title">Contactez nous</h1>
+    <section class="contact-section">
+      <div class="contact-container" id="contact_container">
+        <p class="contact-subtitle">Nous serions ravis de discuter avec vous. Contactez-nous via l'un de nos canaux
+          sociaux ci-dessous.</p>
+
+        <span>
+          <a href="https://www.instagram.com/dtre_esiea" target="_blank" class="social-link twitter" id="socialT">
+            <img src="{% static 'img/insta-icon.svg' %}" alt="Instagram Icon"> Suivez-nous sur Instagram
+          </a>
+        </span>
+        <span>
+          <a href="https://linkedin.com" target="_blank" class="social-link linkedin">
+            <img src="{% static 'img/linkedin-icon.svg' %}" alt="LinkedIn Icon"> Rejoignez-nous sur LinkedIn
+          </a>
+        </span>
+        <span>
+          <a href="mailto:dtre@et.esiea.fr" class="social-link email">
+            <img src="{% static 'img/email-icon.svg' %}" alt="Email Icon"> Envoyez-nous un e-mail
+          </a>
+        </span>
+
+        <nav class="nav2">
+          <a href="https://discord.gg/sQ3Kt7FNDe" target="_blank" class="btn-cta-on">Rejoins nous</a>
+        </nav>
+
+
+        <div class="contact-address">
+          <h3>Notre Adresse</h3>
+          <p><a class="text"
+              href="https://www.google.fr/maps/place/ESIEA/@48.8144689,2.3758579,16z/data=!3m1!4b1!4m6!3m5!1s0x47e673cccf5cb859:0x10ff8b28c767ad3f!8m2!3d48.8144689!4d2.3784328!16s%2Fm%2F0y6d157?entry=ttu&g_ep=EgoyMDI0MTAwOC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank">74 bis Av. Maurice Thorez, 94200 Ivry-sur-Seine, France</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+    {% include 'includes/footer.html' %}
+     <script src="{% static 'js/script.js' %}?{% now 'U' %}"></script>
+
+</body>
+
+</html>

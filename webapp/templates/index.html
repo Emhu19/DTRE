@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTRE</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?{% now 'U' %}">
+</head>
+<body>
+
+<!-- Header -->
+    {% include 'includes/header.html' %}
+<body>
+    <div class="wrapper">
+<!--    <div class="start_page">
+        <div class="hide"><div class="hidden"></div></div>
+        <div class="start_title">KPS</div>
+        <div class="start_text">L'association Kernel Panic Systems</div>
+        <div class="hide1"><div class="hidden1"></div></div>
+    </div>-->
+
+
+
+        <main>
+        <section id="about">
+            <h2>Bienvenue à la DTRE</h2>
+            <p>
+                    La DTRE, est une association de passionnés d'électronique et de Robotique de l'ESIEA.
+            </p>
+        </section>
+        <img src="{% static 'img/photo-index.png' %}" alt="photo" class="image-kps">
+         <nav class="nav2">
+            <a class="btn-cta-on" id="btn-cta-on"  href="projets/">Voir nos projets</a>
+        </nav>
+<!--             <a class="button2"  href="projets.html">Hover me</a> -->
+     </main>
+<!--    <section id="projects">
+        <h2>Projets en Cours</h2>
+        <article>
+            <h3>Projet 1</h3>
+            <p>Description du projet 1...</p>
+        </article>
+        <article>
+            <h3>Projet 2</h3>
+            <p>Description du projet 2...</p>
+        </article>
+    </section>-->
+
+        <!-- Footer -->
+    {% include 'includes/footer.html' %}
+    </div>
+    <script src="{% static 'js/script.js' %}?{% now 'U' %}"></script>
+</body>
+</html>

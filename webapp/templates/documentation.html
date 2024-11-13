@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTRE</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?{% now 'U' %}">
+</head>
+<body>
+<!--    <div class="start_page">
+        <div class="hide"><div class="hidden"></div></div>
+        <div class="start_title">KPS</div>
+        <div class="start_text">L'association Kernel Panic Systems</div>
+        <div class="hide1"><div class="hidden1"></div></div>
+    </div>-->
+    {% include 'includes/header.html' %}
+
+    <main>
+            <section class="events-section">
+    <h2 class="section-title">Événements à venir</h2>
+    <div class="events-grid">
+
+        {% for documentation in documentations %}
+        <div class="event-card">
+            <img src="{{ documentation.image_doc.url }}" alt="{{ documentation.nom_doc }}" class="event-image" />
+            <div class="event-info">
+                <h3 class="event-title">{{ documentation.nom_doc }}</h3>
+                <p class="event-description">
+                    {{ documentation.description }}
+                </p>
+                {% if documentation.lien_doc %}
+                <a href="{{ documentation.lien_doc }}" target=_blank class="event-button">En savoir plus</a>
+                    {% else %}
+                    <a href="#" class="event-button">Pas de lien</a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</section>
+    </main>
+
+    {% include 'includes/footer.html' %}
+
+ <script src="{% static 'js/script.js' %}?{% now 'U' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTRE</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?{% now 'U' %}">
+</head>
+<body>
+
+    {% include 'includes/header.html' %}
+
+<body>
+<!--    <div class="start_page">
+        <div class="hide"><div class="hidden"></div></div>
+        <div class="start_title">KPS</div>
+        <div class="start_text">L'association Kernel Panic Systems</div>
+        <div class="hide1"><div class="hidden1"></div></div>
+    </div>-->
+
+
+    <main>
+
+    <div class="body_tabs">
+    <div class="tabs">
+        <!-- Projet Actuel -->
+        <input
+            type="radio"
+            id="projet-actuel"
+            name="projet"
+            value="Projet Actuel"
+            class="input"
+            checked
+        />
+        <label for="projet-actuel" class="label">Membre Bureau Général</label>
+
+        <!-- Projet Futur -->
+        <input
+            type="radio"
+            id="projet-futur"
+            name="projet"
+            value="Projet Futur"
+            class="input"
+        />
+        <label for="projet-futur" class="label">Pole Technique</label>
+
+        <!-- Ancien Projet -->
+        <input
+            type="radio"
+            id="ancien-projet"
+            name="projet"
+            value="Ancien Projet"
+            class="input"
+        />
+        <label for="ancien-projet" class="label">Pole Communication</label>
+    </div>
+</div>
+
+
+                                                                <!-- ***************************SECTION Membre ********************************************-->
+
+    <div class="Projets">
+
+        <!-- ***************************SECTION Membre ACTUEL********************************************-->
+        <div class="Projets-grid">
+            <div id="projet-actuel-content" class="projet-content" style="display: none;">
+                                        <!-- ************** Membres*********************-->
+
+                {% for membre in membres %}
+                    {% if membre.role.bureau %}
+                    <div class="member-card">
+                     {% if membre.photo_profile %}
+                        <img src="{{ membre.photo_profile.url }}" alt="{{ membre.prenom }}" class="member-photo" />
+                     {% else %}
+                         <img src="{% static 'img/loveAmaury.jpg' %} " alt="{{ membre.prenom }}" class="member-photo" />
+                     {% endif %}
+                        <h2 class="member-name">{{ membre.prenom }} </h2>
+                        {% if membre.role %}
+                        <p class="member-role">{{ membre.role }}</p>
+                            {% else %}
+                            <p class="member-role">Membre</p>
+                            {% endif %}
+                    <p class="member-pseudo">{{ membre.tag_discord }}</p>
+                        <div class="social-links-membre">
+                            {% if membre.lien_github %}
+                            <a href="{{ membre.lien_github }}" target="_blank" class="social-link github-link">
+                                <img src="{% static 'img/github-icon.svg' %}" class="icon" alt="GitHub de {{ membre.nom }}">
+                            </a>
+                            {% endif %}
+                        {% if membre.lien_lk %}
+                            <a href="{{ membre.lien_lk }}" target="_blank" class="social-link linkedin-link">
+                                <img src="{% static 'img/linkedin-icon.svg' %}" class="icon" alt="LinkedIn de {{ membre.nom }}">
+                            </a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+</div>
+
+       <!-- IMPORTANT A GARDER -->  </div>
+
+        <!-- ***************************Test Django fill ********************************************-->
+
+
+
+        <!-- ***************************SECTION IDEE DE FUTUR PROJET *******************************************-->
+            <div id="projet-futur-content" class="projet-content" style="display: none;">
+                 {% for membre in membres %}
+                    {% if membre.role.cyber %}
+                    <div class="member-card">
+                     {% if membre.photo_profile %}
+                        <img src="{{ membre.photo_profile.url }}" alt="{{ membre.nom }}" class="member-photo" />
+                     {% else %}
+                         <img src="{% static 'img/loveAmaury.jpg' %} " alt="{{ membre.prenom }}" class="member-photo" />
+                     {% endif %}
+                        <h2 class="member-name">{{ membre.prenom }} {{ membre.nom }}</h2>
+                        {% if mebre.role %}
+                        <p class="member-role">{{ membre.role }}</p>
+                            {% else %}
+                            <p class="member-role">Membre</p>
+                            {% endif %}
+                    <p class="member-pseudo">{{ membre.tag_discord }}</p>
+                        <div class="social-links-membre">
+                            {% if membre.lien_github %}
+                            <a href="{{ membre.lien_github }}" target="_blank" class="social-link github-link">
+                                <img src="{% static 'img/github-icon.svg' %}" class="icon" alt="GitHub de {{ membre.nom }}">
+                            </a>
+                            {% endif %}
+                            <a href="{{ membre.linkedin }}" target="_blank" class="social-link linkedin-link">
+                                <img src="{% static 'img/linkedin-icon.svg' %}" class="icon" alt="LinkedIn de {{ membre.nom }}">
+                            </a>
+                        </div>
+
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+    <!-- ***************************SECTION D'ANCIEN PROJET ********************************************-->
+            <div id="ancien-projet-content" class="projet-content" style="display: none;">
+
+            <!-- **************ANCIEN PROJET 1*********************-->
+                    {% for membre in membres %}
+                    {% if membre.role.com %}
+                    <div class="member-card">
+                     {% if membre.photo_profile %}
+                        <img src="{{ membre.photo_profile.url }}" alt="{{ membre.nom }}" class="member-photo" />
+                     {% else %}
+                         <img src="{% static 'img/loveAmaury.jpg' %} " alt="{{ membre.prenom }}" class="member-photo" />
+                     {% endif %}
+                        <h2 class="member-name">{{ membre.prenom }} {{ membre.nom }}</h2>
+                        {% if mebre.role %}
+                        <p class="member-role">{{ membre.role }}</p>
+                            {% else %}
+                            <p class="member-role">Membre</p>
+                            {% endif %}
+                    <p class="member-pseudo">{{ membre.tag_discord }}</p>
+                        <div class="social-links-membre">
+                            {% if membre.lien_github %}
+                            <a href="{{ membre.lien_github }}" target="_blank" class="social-link github-link">
+                                <img src="{% static 'img/github-icon.svg' %}" class="icon" alt="GitHub de {{ membre.nom }}">
+                            </a>
+                            {% endif %}
+                        {% if membre.lien_lk %}
+                            <a href="{{ membre.lien_lk }}" target="_blank" class="social-link linkedin-link">
+                                <img src="{% static 'img/linkedin-icon.svg' %}" class="icon" alt="LinkedIn de {{ membre.nom }}">
+                            </a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+
+        </div>
+
+    </main>
+
+    {% include 'includes/footer.html' %}
+
+ <script src="{% static 'js/script.js' %}?{% now 'U' %}"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTRE</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?{% now 'U' %}">
+</head>
+<body>
+<!--    <div class="start_page">
+        <div class="hide"><div class="hidden"></div></div>
+        <div class="start_title">KPS</div>
+        <div class="start_text">L'association Kernel Panic Systems</div>
+        <div class="hide1"><div class="hidden1"></div></div>
+    </div>-->
+{% include 'includes/header.html' %}
+
+<main>
+
+    <section class="events-section">
+        <h2 class="section-title">Événements à venir</h2>
+        <div class="events-grid">
+
+            {% for event in events %}
+                <div class="event-card">
+                    <img src="{{ event.image_event.url }}" alt="{{ event.nom_event }}" class="event-image"/>
+                    <div class="event-info">
+                        <h3 class="event-title">{{ event.nom_event }}</h3>
+                        {% if event.date_debut and event.date_fin %}
+                            {% with start_date=event.date_debut end_date=event.date_fin %}
+                                {% with start_day=start_date|date:"j" end_day=end_date|date:"j" %}
+                                    {% with start_month=start_date|date:"F" end_month=end_date|date:"F" %}
+                                        {% with start_year=start_date|date:"Y" end_year=end_date|date:"Y" %}
+                                            {% with start_hour=event.heure_debut|date:"H:i" end_hour=event.heure_fin|date:"H:i" %}
+                                                <p class="event-date">
+                                                    Période :
+                                                    {% if start_year == end_year and start_month == end_month %}
+                                                        {{ start_day }} - {{ end_day }} {{ start_month|title }}
+                                                        {{ start_year }}
+                                                        de {{ start_hour }} à {{ end_hour }}
+                                                    {% elif start_year == end_year %}
+                                                        {{ start_day }} {{ start_month|title }} - {{ end_day }}
+                                                        {{ end_month|title }} {{ start_year }}
+                                                        de {{ start_hour }} à {{ end_hour }}
+                                                    {% else %}
+                                                        {{ start_day }} {{ start_month|title }} {{ start_year }} -
+                                                        {{ end_day }} {{ end_month|title }} {{ end_year }}
+                                                        de {{ start_hour }} à {{ end_hour }}
+                                                    {% endif %}
+                                                </p>
+                                            {% endwith %}
+                                        {% endwith %}
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endwith %}
+                        {% elif event.date_debut %}
+                            <p class="event-date">
+                                Date : {{ event.date_debut|date:"j F Y" }}
+                                {% if event.heure_debut %} à {{ event.heure_debut|date:"H:i" }}{% endif %}
+                            </p>
+                        {% else %}
+                            <p class="event-date">Date : A définir</p>
+                        {% endif %}
+
+                        <p class="event-location">Lieu : {{ event.lieu }}</p>
+                        <p class="event-description">{{ event.description_courte }}</p>
+                        {% if event.lien_page_event %}
+                            <a href="{{ event.lien_page_event }}" class="event-button">En savoir plus</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </section>
+
+
+</main>
+
+{% include 'includes/footer.html' %}
+
+ <script src="{% static 'js/script.js' %}?{% now 'U' %}"></script>
+</body>
+</html>

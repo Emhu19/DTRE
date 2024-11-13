@@ -1,0 +1,40 @@
+body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px;
+        }
+        .glitch-counter { font-size: 2em; margin-top: 20px; }
+        .gps { font-size: 1.2em; color: #cccccc; }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button {
+            margin: 5px 0;
+            padding: 10px 20px;
+            margin-bottom: 15px;
+            font-size: 1em;
+            background-color: #4444ff;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            width: 300px;
+            transition: background-color 0.3s ease;
+            border-radius: 15px;
+        }
+        .button:disabled {
+            background-color: #888888;
+            cursor: not-allowed;
+        }
+        .button:hover:not(:disabled) {
+            background-color: #3333dd;
+        }
+
+canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
